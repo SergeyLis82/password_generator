@@ -1,15 +1,15 @@
 {% extends 'generator/main.html' %}
 {% block content %}
     <form action="{% url 'password' %}">
-        <select name="length">
+        <select name="length" class="browser-default">
             {% for n in range %}
             <option value="{{ n }}">{{ n }}</option>
             {% endfor %}
         </select>
-        <br><input type="checkbox" name="uppercase"> Uppercase
-        <br><input type="checkbox" name="numbers"> Numbers
-        <br><input type="checkbox" name="specials"> Special Characters
-        <br>
-        <input type="submit" value="Generate password">
+        <p><label><input type="checkbox" name="uppercase" class="filled-in"><span>Uppercase</span></label></p>
+        <p><label><input type="checkbox" name="numbers" class="filled-in"><span>Numbers</span></label></p>
+        <p><label><input type="checkbox" name="specials" class="filled-in"><span>Special Characters</span></label></p>
+        
+        <button type="submit" name="action" class="btn waves-effect waves-light"><i class="material-icons right">send</i>Generate password</button>
     </form>
 {% endblock %}
