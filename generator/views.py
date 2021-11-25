@@ -6,7 +6,7 @@ import random
 def home(request):
     params = {
         'title': 'Home',
-        'main_string': 'Password generator',
+        'heading': 'Password generator',
         'range': range(6, 31),
     }
     return render(request, 'generator/home.html', params)
@@ -27,7 +27,19 @@ def password(request):
         thepassword += random.choice(characters)
 
     params = {
-        'title': 'Home',
+        'title': 'Password',
+        'heading': 'Password',
         'password': thepassword,
     }
     return render(request, 'generator/password.html', params)
+
+def about(request):
+    params = {
+        'title': 'About',
+        'heading': 'About',
+        'content': '''Этот сайт сделан в качестве домашнего задания. 
+        На нём можно сгенерировать пароли различной длинны и сложности, 
+        используя символы в верхнем регистре, цифры и спецсимволы.'''
+        
+    }
+    return render(request, 'generator/about.html', params)
