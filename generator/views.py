@@ -13,7 +13,7 @@ def home(request):
 
 def password(request):
     thepassword = ''
-    length = int(request.GET.get('length'))
+    length = int(request.GET.get('length', '6'))
     characters = list('abcdefghijklmnopqrstuvwxyz')
     
     if request.GET.get('uppercase'):

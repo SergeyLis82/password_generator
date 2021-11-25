@@ -2,6 +2,7 @@
 {% block content %}
     <form action="{% url 'password' %}">
         <select name="length" class="browser-default">
+            <option value="" disabled selected>Choose password length</option>
             {% for n in range %}
             <option value="{{ n }}">{{ n }}</option>
             {% endfor %}

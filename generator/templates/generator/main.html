@@ -10,7 +10,7 @@
     <title>{{ title }}</title>
 </head>
 <body>
-    <nav>
+    <nav class="light-blue lighten-1" role="navigation">
         <div class="nav-wrapper">
             <ul id="nav-mobile" class="left hide-on-med-and-down">
                 <li><a href="{% url 'home' %}">Home</a></li>
@@ -18,7 +18,11 @@
             </ul>
         </div>
     </nav>
-    <h2 class="header">{{ heading }}</h2>
-    {% block content %}{% endblock %}
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <h2 class="header center orange-text">{{ heading }}</h2>
+            {% block content %}{% endblock %}
+        </div>
+    </div>
 </body>
 </html>
