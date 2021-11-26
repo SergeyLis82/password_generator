@@ -1,6 +1,7 @@
 from django.shortcuts import render
 #from django.http import HttpResponse
 import random
+import string
 
 content = {
     'home': {'title': 'Home',
@@ -23,14 +24,14 @@ def home(request):
 def password(request):
     thepassword = ''
     length = int(request.GET.get('length', '6'))
-    characters = list('abcdefghijklmnopqrstuvwxyz')
+    characters = list(string.ascii_lowercase)
     
     if request.GET.get('uppercase'):
-        characters.extend(list('ABCDEFGHIJKLMNOPQRSTUVWXYZ'))
+        characters.extend(list(string.ascii_uppercase))
     if request.GET.get('numbers'):
-        characters.extend(list('1234567890'))
+        characters.extend(list(string.digits))
     if request.GET.get('specials'):
-        characters.extend(list('!@#$%^&*()[]='))
+        characters.extend(list(string.punctuation))
 
     for i in range(length):
         thepassword += random.choice(characters)
