@@ -2,14 +2,23 @@ from django.shortcuts import render
 #from django.http import HttpResponse
 import random
 
+content = {
+    'home': {'title': 'Home',
+             'heading': 'Password generator',
+             'range': range(6, 31),
+            },
+    'password': {'title': 'Password',
+                 'heading': 'Password',
+                },
+    'about': {'title': 'About',
+              'heading': 'About',
+              'content': '''Этот сайт сделан в качестве домашнего задания. На нём можно сгенерировать пароли различной длинны и сложности, используя символы в верхнем/нижнем регистре, цифры и спецсимволы.'''
+              }
+}
+
 # Create your views here.
 def home(request):
-    params = {
-        'title': 'Home',
-        'heading': 'Password generator',
-        'range': range(6, 31),
-    }
-    return render(request, 'generator/home.html', params)
+    return render(request, 'generator/home.html', content['home'])
 
 def password(request):
     thepassword = ''
@@ -21,25 +30,13 @@ def password(request):
     if request.GET.get('numbers'):
         characters.extend(list('1234567890'))
     if request.GET.get('specials'):
-        characters.extend(list('!@#$%^&*()='))
+        characters.extend(list('!@#$%^&*()[]='))
 
     for i in range(length):
         thepassword += random.choice(characters)
-
-    params = {
-        'title': 'Password',
-        'heading': 'Password',
-        'password': thepassword,
-    }
-    return render(request, 'generator/password.html', params)
+    content['password']['password'] = thepassword
+    
+    return render(request, 'generator/password.html', content['password'])
 
 def about(request):
-    params = {
-        'title': 'About',
-        'heading': 'About',
-        'content': '''Этот сайт сделан в качестве домашнего задания. 
-        На нём можно сгенерировать пароли различной длинны и сложности, 
-        используя символы в верхнем/нижнем регистре, цифры и спецсимволы.'''
-        
-    }
-    return render(request, 'generator/about.html', params)
+    return render(request, 'generator/about.html', content['about'])
